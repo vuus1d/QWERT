@@ -1,29 +1,44 @@
-// public transport management system
+import java.util.ArrayList;
+import java.util.Comparator;
+
 public class Main {
     public static void main(String[] args) {
 
         Bus bus1 = new Bus(10, 50);
         Bus bus2 = new Bus(20, 40);
         Bus bus3 = new Bus(30, 60);
-        Commuter commuter = new Commuter("Nurasyl", 500);
 
-        TransportService service = new TransportService("City Transport", 120);
+        // типа массив данных
+        ArrayList<Bus> buses = new ArrayList<>();
+        buses.add(bus1);
+        buses.add(bus2);
+        buses.add(bus3);
 
-        bus1.printInfo();
-        bus2.printInfo();
-        bus3.printInfo();
-        commuter.printInfo();
-        service.printInfo();
-
-        // сравнение автобусов
-        if (bus1.getCapacity() > bus2.getCapacity() && bus1.getCapacity()> bus3.getCapacity()) {
-            System.out.println("Bus 1 has larger capacity");
-        }else if (bus3.getCapacity()> bus1.getCapacity()){
-            System.out.println("Bus 3 has larger that 1");
+        // фильтр типа
+        System.out.println("Buses with capacity > 45:");
+        for (Bus bus : buses) {
+            if (bus.getCapacity() > 45) {
+                System.out.println(bus);
+            }
         }
 
-        else {
-            System.out.println("Bus 2 has larger or equal capacity");
+        // ыздейд
+        System.out.println("\nSearching bus with route 20:");
+        for (Bus bus : buses) {
+            if (bus.getRouteNumber() == 20) {
+                System.out.println("Found: " + bus);
+            }
         }
+
+        // сортировать етед
+        buses.sort(Comparator.comparingInt(Bus::getCapacity));
+        System.out.println("\nSorted buses by capacity:");
+        for (Bus bus : buses) {
+            System.out.println(bus);
+        }
+
+        // хранения
+        Transport transport = new Bus(99, 70);
+        System.out.println("\nPolymorphism example, capacity: " + transport.getCapacity());
     }
 }
