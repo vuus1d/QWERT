@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Bus bus1 = new Bus(10, 50);
         Bus bus2 = new Bus(20, 40);
@@ -40,5 +41,18 @@ public class Main {
         // хранения
         Transport transport = new Bus(99, 70);
         System.out.println("\nPolymorphism example, capacity: " + transport.getCapacity());
+
+        BusDAO busDAO = new BusDAO();
+
+        busDAO.addBus(new Bus(101, 45));
+        busDAO.addBus(new Bus(102, 60));
+
+        List<Bus> dbBuses = busDAO.getAllBuses();
+        for (Bus b : dbBuses) {
+            System.out.println(b);
+        }
+
+        busDAO.updateCapacity(101, 55);
+        busDAO.deleteBus(102);
     }
 }
