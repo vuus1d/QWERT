@@ -31,7 +31,7 @@ public class BusDAO {
                     rs.getInt("capacity")
             ));
         }
-
+//    ffg
         rs.close();
         stmt.close();
         conn.close();
